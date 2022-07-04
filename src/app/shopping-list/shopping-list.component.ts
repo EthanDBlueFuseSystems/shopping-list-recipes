@@ -9,6 +9,7 @@ import { ShoppingListService } from './shopping-list.service';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
+
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
   private subscription: Subscription;
@@ -22,8 +23,12 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         (ingredients: Ingredient[]) => {
           this.ingredients = ingredients;
         }
-
       );
+  }
+
+  onEditItem(index: number){
+    //when the user wants to edit an item it will emit the index to it
+    this.slService.startedEditing.next(index);
   }
 
   ngOnDestroy(): void {
