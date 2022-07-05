@@ -45,6 +45,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   //Add a new items using form from shopping edit
   onSubmit(form: NgForm) {
+    console.log("new");
     // get the current form values
     const value = form.value;
     //Save into a new ingredient object
@@ -59,6 +60,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     }
     this.editMode = false;
     form.reset();
+
    
   }
 
