@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
+import { ShoppingItems } from "../shopping-items.model";
+
 
 @Component({
     selector: "app-item-item",
@@ -6,4 +8,20 @@ import { Component } from "@angular/core";
 })
 
 
-export class FoodItemComponent{}
+export class FoodItemComponent implements OnInit, OnDestroy{
+
+    @Input() item:ShoppingItems;
+    @Input() index: number;
+
+    constructor(){}
+
+    ngOnInit(): void{
+
+    }
+
+    ngOnDestroy():void{
+
+    }
+
+
+}

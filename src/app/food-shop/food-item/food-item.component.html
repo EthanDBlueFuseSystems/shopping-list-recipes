@@ -1,2 +1,20 @@
-<a>1 food item</a>
-<a>2 food item</a>
+<a style="cursor:pointer;"
+    [routerLink] = "[index]"
+    routerLinkActive="active"
+    class="list-group-item clearfix">
+    <div class="card" [align]="'center'">
+        <h3 class="card-title" >{{ item.name }}</h3> 
+        <br>
+        <img [src]="item.imagePath"
+            alt="{{item.name}}"
+            class="img-responsive"
+            style="max-height: 150px; align-content: center">
+    
+        <div class="card body">
+            Amount: {{ item.amount  }} <br>
+            Price: {{ item.price | currency }} /pricePer{{ item.pricePer}}p <br>
+            Type: {{ item.type }} <br>
+        </div>
+    </div>
+</a>
+
