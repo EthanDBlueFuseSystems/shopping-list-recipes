@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'admin',
-        loadChildren: () => import('./admin-panel/admin-panel.module').then(x=> x.AdminPanelModule), //pointing to the admin panel module to load comopnents
+        loadChildren: () => import('./admin-profile/admin-profile.module').then(x=> x.AdminProfileModule), //pointing to the admin panel module to load comopnents
     }
 ]
     

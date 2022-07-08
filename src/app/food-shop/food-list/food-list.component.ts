@@ -10,7 +10,7 @@ import { ShoppingItems } from "../shopping-items.model";
 
 export class FoodListComponent implements OnInit, OnDestroy{
 
-    foodSubscription: Subscription;//create subscription to unsubscribe from
+    // foodSubscription: Subscription;//create subscription to unsubscribe from
 
     shoppingItems: ShoppingItems[];
 
@@ -26,7 +26,7 @@ export class FoodListComponent implements OnInit, OnDestroy{
     }
 
     ngOnDestroy(): void{
-        this.foodSubscription.unsubscribe(); //need to unsubscribe when changing components to prevent memory leak
+        // this.foodSubscription.unsubscribe(); //need to unsubscribe when changing components to prevent memory leak
     }
 
 }
