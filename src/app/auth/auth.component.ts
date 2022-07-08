@@ -52,19 +52,19 @@ export class AuthComponent{
         }, errorMessage => {
             console.log(errorMessage);
             this.error = errorMessage;
-            this.showErrorAlert(errorMessage);
+            // this.showErrorAlert(errorMessage);
             this.isLoading = false;
         });
         
         form.reset();
     }
 
-    private showErrorAlert(message:string){
-        const alertCmpFactory = this.componentFactory.resolveComponentFactory(AlertComponent);
-        const hostViewContainerRef = this.alertHost.viewContainerRef;
-        hostViewContainerRef.clear();
-        hostViewContainerRef.createComponent(alertCmpFactory);
-    }
+    // private showErrorAlert(message:string){
+    //     const alertCmpFactory = this.componentFactory.resolveComponentFactory(AlertComponent);
+    //     const hostViewContainerRef = this.alertHost.viewContainerRef;
+    //     hostViewContainerRef.clear();
+    //     hostViewContainerRef.createComponent(alertCmpFactory);
+    // }
 
     onHandleError(){
         this.error = null;

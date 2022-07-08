@@ -22,6 +22,10 @@ const appRoutes: Routes = [
     {
         path: 'shop',
         loadChildren: () => import('./food-shop/food-shop.module').then(x => x.FoodShopModule),
+    },
+    {
+        path: 'admin',
+        loadChildren: () => import('./admin-panel/admin-panel.module').then(x=> x.AdminPanelModule), //pointing to the admin panel module to load comopnents
     }
 ]
     

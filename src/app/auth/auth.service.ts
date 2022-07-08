@@ -6,6 +6,7 @@ import { User } from "./user.model";
 import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
 
+
 export interface AuthResponseData{
     kind: string,
     idToken: string,
@@ -16,14 +17,24 @@ export interface AuthResponseData{
     registered?: boolean
 }
 
+
+
 @Injectable({providedIn:'root'})
+
 export class AuthService{
     //create new subject with data as user
     //Subjects are observables that you can subscribe to
     user = new BehaviorSubject<User>(null) 
     private tokenExpirationTimer: any; 
+    privilegeLevel; //default user
 
-    constructor(private http:HttpClient, private router: Router){}
+    constructor(private http:HttpClient, private router: Router){
+        this.privilegeLevel = {
+            default: 1,
+            admin: 2,
+            superUser: 3,
+        }
+    }
 
     signup(email: string, password:string){
         //Make post request to signup endpoint expecting AuthResponseData to be returned
@@ -35,19 +46,20 @@ export class AuthService{
         })
         .pipe(catchError(this.handleError), //catch errors
         tap(responseData => { //authenticate the user after request 
-            this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
+            this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn, this.privilegeLevel.default);
         }));
     }
     
-    private handleAuthentication(email:string, userId:string, token:string, expiresIn:number){
+    private handleAuthentication(email:string, userId:string, token:string, expiresIn:number, userPriv:number){
         //create a new expiration date by getting the current time in seconds and adding expires in
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
         //create a new user object with authentication details
         const user = new User(
             email, 
+            userPriv,
             userId, 
             token, 
-            expirationDate
+            expirationDate,
         );
         this.user.next(user);
         this.autoLogout(expiresIn * 1000);
@@ -63,7 +75,7 @@ export class AuthService{
             returnSecureToken: true,
         }).pipe(catchError(this.handleError),
         tap(responseData => { //authenticate the user after request 
-            this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
+            this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn, this.privilegeLevel.default);
         })); //pipe data to error handler to catch any errors 
     }
 
@@ -94,7 +106,12 @@ export class AuthService{
         if(!userData){
             return;
         }
-        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+        const loadedUser = new User(
+            userData.email, 
+            this.privilegeLevel.default,
+            userData.id, 
+            userData._token, 
+            new Date(userData._tokenExpirationDate));
 
         if(loadedUser.token){
             this.user.next(loadedUser);
