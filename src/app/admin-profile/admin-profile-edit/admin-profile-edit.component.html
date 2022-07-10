@@ -1,14 +1,28 @@
 
 <div style="border: 1px solid black; border-radius: 20px; padding: 20px"class="col-xs-6">
-    <form >
+    <form  (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" >
         <div style="margin: 5px;"class="form-group">
             <h3><label for="email" class="col-sm-2 control-label">Email</label></h3>
-            <input type="text" name="email" class="form-control" [placeholder]="profile.email">
+            <input 
+                type="text" 
+                name="email" 
+                class="form-control" 
+                placeholder="{{profile.email}}"
+                ngModel
+                email>
         </div>
         <div style="margin: 5px;"class="form-group">
             <h3><label for="privilege" class="col-sm-2 control-label">Privilege</label></h3>
-            <input type="number" name="privilege" class="form-control " [placeholder]="profile.userPriv">
+            <input 
+                type="number" 
+                name="privilege" 
+                class="form-control" 
+                placeholder="{{profile.userPriv}}"
+                ngModel>
         </div>
-    </form>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    </form> 
 
 </div>

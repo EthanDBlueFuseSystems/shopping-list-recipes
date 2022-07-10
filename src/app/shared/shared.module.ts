@@ -6,13 +6,15 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { PlaceholderDirective } from './placeholder/placeholder.directive';
 import { DropdownDirective } from './dropdown.directive';
 import { LoggingService } from '../logging.service';
+import { MatchPasswordDirective } from './MatchPasswordDirective.directive';
 
 @NgModule({
   declarations: [
     AlertComponent,
     LoadingSpinnerComponent,
     PlaceholderDirective,
-    DropdownDirective
+    DropdownDirective,
+    MatchPasswordDirective
   ],
   imports: [CommonModule],
   exports: [
@@ -20,6 +22,7 @@ import { LoggingService } from '../logging.service';
     LoadingSpinnerComponent,
     PlaceholderDirective,
     DropdownDirective,
+    MatchPasswordDirective,
     CommonModule
   ],
   entryComponents: [AlertComponent],

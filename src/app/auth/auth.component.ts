@@ -3,9 +3,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { AuthResponseData, AuthService } from "./auth.service";
-import { AlertComponent } from "../shared/alert/alert.component";
 import { PlaceholderDirective } from "../shared/placeholder/placeholder.directive";
-
 
 @Component({
     selector: 'app-auth',

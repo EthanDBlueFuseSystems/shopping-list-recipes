@@ -10,7 +10,30 @@
             <app-loading-spinner></app-loading-spinner>
         </div>
 
-        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading" >
+        <form #authForm="ngForm" appMatchPassword (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading"   >
+            <!-- NEEDS TO BE A REACTIVE FOR SO CAN PROPERLY VALIDATE PASSWORD CONFIRM -->
+            <div class="form-group" [hidden]="!isLoginMode" >
+                <label for="firstname">Firstname</label>
+                <input 
+                    type="text" 
+                    id="firstname" 
+                    class="form-control" 
+                    ngModel 
+                    name="firstname" 
+                    required>
+            </div>
+
+            <div class="form-group" [hidden]="!isLoginMode" >
+                <label for="surname">Surname</label>
+                <input 
+                    type="text" 
+                    id="surname" 
+                    class="form-control" 
+                    ngModel 
+                    name="surname" 
+                    required >
+            </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
                 <input 
@@ -29,10 +52,24 @@
                     type="password" 
                     id="password"
                     class="form-control" 
-                    ngModel 
+                    #password 
                     name="password" 
                     required 
-                    minlength="6">
+                    minlength="6"
+                    autocomplete="on">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input 
+                    type="password" 
+                    id="confirmPassword" 
+                    class="form-control" 
+                    #confirmPassword 
+                    name="confirmPassword"
+                    required
+                    minLength="6"
+                    autocomplete="on"> 
             </div>
 
             <div style="margin-bottom: 10px;">
@@ -44,6 +81,9 @@
                     class="btn btn-primary" 
                     (click)="oneSwitchMode()" 
                     type="button">Switch to {{isLoginMode ? 'Sign up' : 'Login'}}</button>
+
+                <hr>
+                <a href="#">Forgot Password ?</a>
             </div>
         </form>
     </div>
