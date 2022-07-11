@@ -10,28 +10,24 @@
             <app-loading-spinner></app-loading-spinner>
         </div>
 
-        <form #authForm="ngForm" appMatchPassword (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading"   >
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
             <!-- NEEDS TO BE A REACTIVE FOR SO CAN PROPERLY VALIDATE PASSWORD CONFIRM -->
-            <div class="form-group" [hidden]="!isLoginMode" >
+            <div class="form-group" [disabled]="isLoginMode" [hidden]="isLoginMode" >
                 <label for="firstname">Firstname</label>
                 <input 
                     type="text" 
                     id="firstname" 
-                    class="form-control" 
-                    ngModel 
-                    name="firstname" 
-                    required>
+                    class="form-control"
+                    formControlName="firstname">
             </div>
 
-            <div class="form-group" [hidden]="!isLoginMode" >
+            <div class="form-group" [disabled]="isLoginMode" [hidden]="isLoginMode" >
                 <label for="surname">Surname</label>
                 <input 
                     type="text" 
                     id="surname" 
                     class="form-control" 
-                    ngModel 
-                    name="surname" 
-                    required >
+                    formControlname="surname">
             </div>
 
             <div class="form-group">
@@ -40,10 +36,7 @@
                     type="email" 
                     id="email" 
                     class="form-control" 
-                    ngModel 
-                    name="email" 
-                    required 
-                    email>
+                    formControlName="email">
             </div>
 
             <div class="form-group">
@@ -52,24 +45,16 @@
                     type="password" 
                     id="password"
                     class="form-control" 
-                    #password 
-                    name="password" 
-                    required 
-                    minlength="6"
-                    autocomplete="on">
+                    formControlName="password">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" [disabled]="isLoginMode" [hidden]="isLoginMode">
                 <label for="confirmPassword">Confirm Password</label>
                 <input 
                     type="password" 
                     id="confirmPassword" 
                     class="form-control" 
-                    #confirmPassword 
-                    name="confirmPassword"
-                    required
-                    minLength="6"
-                    autocomplete="on"> 
+                    formControlName="confirmPassword"> 
             </div>
 
             <div style="margin-bottom: 10px;">
