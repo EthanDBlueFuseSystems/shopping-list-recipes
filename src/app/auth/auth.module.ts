@@ -4,10 +4,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { AuthComponent } from "./auth.component";
-import { DataStorageService } from "../shared/data-storage.service";
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
-    declarations:[AuthComponent],
+    declarations:[AuthComponent, ForgotPasswordComponent],
     imports:[
         CommonModule, 
         ReactiveFormsModule, 

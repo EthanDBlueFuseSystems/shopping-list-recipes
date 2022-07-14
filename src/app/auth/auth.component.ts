@@ -13,6 +13,8 @@ import { PlaceholderDirective } from "../shared/placeholder/placeholder.directiv
 export class AuthComponent implements OnInit{
     isLoginMode:boolean = true;
     isLoading:boolean = false;
+    isForgotPassword:boolean = false;
+
     error:string = null;
 
     authForm: FormGroup;//reactive form variable
@@ -26,6 +28,10 @@ export class AuthComponent implements OnInit{
     }
     oneSwitchMode(){
         this.isLoginMode = !this.isLoginMode
+    }
+
+    forgotPassword(){
+        this.isForgotPassword = !this.isForgotPassword;
     }
 
     matchPasswordValidator(password: string, confirmPassword: string):Boolean {
@@ -44,6 +50,8 @@ export class AuthComponent implements OnInit{
 
         console.log("form loaded");
     }
+
+    
 
     //On form submit
     onSubmit(){
@@ -65,6 +73,8 @@ export class AuthComponent implements OnInit{
 
         if(!this.matchPasswordValidator(submittedUser.password, submittedUser.confirmPassword)){
             this.error = "Passwords do not match, please try again";
+            this.authForm.get('confirmPassword').setErrors({'invalid':true});
+            return;
         }else{
             console.log("Password does match");
         }

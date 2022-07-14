@@ -55,7 +55,9 @@
                     id="confirmPassword" 
                     class="form-control" 
                     formControlName="confirmPassword"> 
+                    
             </div>
+
 
             <div style="margin-bottom: 10px;">
                 <button 
@@ -66,9 +68,11 @@
                     class="btn btn-primary" 
                     (click)="oneSwitchMode()" 
                     type="button">Switch to {{isLoginMode ? 'Sign up' : 'Login'}}</button>
-
                 <hr>
-                <a href="#">Forgot Password ?</a>
+                <a style="cursor:pointer;" 
+                    *ngIf="isLoginMode" 
+                    (click)="forgotPassword()">Forgot Password ?</a>
+                <app-forgot-password *ngIf="isForgotPassword"></app-forgot-password>
             </div>
         </form>
     </div>
