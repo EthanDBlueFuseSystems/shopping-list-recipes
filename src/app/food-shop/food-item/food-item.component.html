@@ -1,20 +1,38 @@
-<a style="cursor:pointer; margin-top: 10px;"
-    [routerLink] = "[index]"
-    routerLinkActive="active"
-    class="list-group-item clearfix">
-    <div class="card" [align]="'center'">
-        <h3 class="card-title" >{{ item.name }}</h3> 
-        <br>
-        <img [src]="item.imagePath"
-            alt="{{item.name}}"
-            class="img-responsive"
-            style="max-height: 150px; align-content: center">
-    
-        <div class="card body">
-            Amount: {{ item.amount  }} <br>
-            Price: {{ item.price | currency }} /pricePer{{ item.pricePer}}p <br>
-            Type: {{ item.type }} <br>
+
+<div class="col-md-6">
+    <a style="cursor:pointer; margin-top: 5px;"
+        
+        class="list-group-item clearfix">
+        <div class="card" [align]="'center'">
+            <h3 class="card-title" >{{ item.name }}</h3> 
+            <br>
+            <img
+                
+                [src]="item.imagePath"
+                alt="{{item.name}}"
+                class="img-responsive"
+                style="max-height: 150px; align-content: center">
+        
+            <div
+            style="margin-top: 10px;"  
+            class="card body">
+                Amount: <input style="width:50%;" type="number" name="amount"/> <br>
+                <div style="margin-top: 10px;">
+                    Price: {{ item.price | currency }} /pricePer: {{ item.pricePer}}p <br>
+                </div>
+                <div style="margin-top: 10px;">
+                    Type: {{ item.type }} <br>
+
+                </div>
+            </div>
         </div>
-    </div>
-</a>
+
+        <button class="btn btn-success"
+            (click)="addToBasket()">Add</button>
+    </a>
+
+    <app-food-detail></app-food-detail>
+
+</div>
+
 

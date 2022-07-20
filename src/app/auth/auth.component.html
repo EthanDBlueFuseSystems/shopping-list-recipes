@@ -11,7 +11,6 @@
         </div>
 
         <form [formGroup]="authForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-            <!-- NEEDS TO BE A REACTIVE FOR SO CAN PROPERLY VALIDATE PASSWORD CONFIRM -->
             <div class="form-group" [disabled]="isLoginMode" [hidden]="isLoginMode" >
                 <label for="firstname">Firstname</label>
                 <input 

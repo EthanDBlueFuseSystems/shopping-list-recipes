@@ -6,6 +6,7 @@ import { FoodDetailComponent } from "./food-detail/food-detail.component";
 import { FoodItemComponent } from "./food-item/food-item.component";
 import { FoodListComponent } from "./food-list/food-list.component";
 import { FoodShopComponent } from "./food-shop.component";
+import { ShopBasketComponent } from './shop-basket/shop-basket.component';
 
 @NgModule({
     declarations:[
@@ -13,6 +14,7 @@ import { FoodShopComponent } from "./food-shop.component";
         FoodListComponent,
         FoodDetailComponent,
         FoodItemComponent,
+        ShopBasketComponent,
     ],
     imports:[
         CommonModule,

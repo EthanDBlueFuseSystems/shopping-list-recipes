@@ -1,0 +1,10 @@
+<div>
+    <h1 class="display-1"><u>Basket</u></h1>
+
+    <app-item-item 
+        *ngFor="let item of basket let idx = index"
+        [item]="item"
+        [index]="idx"
+    >something</app-item-item>
+
+</div>

@@ -34,8 +34,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   onFetchData(){
-    debugger
-    console.log("fetch");
     this.dataStorageService.fetchRecipes().subscribe();
   }
 

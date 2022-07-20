@@ -69,15 +69,7 @@ export class AuthComponent implements OnInit{
             confirmPassword: this.authForm.value.confirmPassword
         }
 
-        console.log("Surname: " + this.authForm.value.surname);
-
-        if(!this.matchPasswordValidator(submittedUser.password, submittedUser.confirmPassword)){
-            this.error = "Passwords do not match, please try again";
-            this.authForm.get('confirmPassword').setErrors({'invalid':true});
-            return;
-        }else{
-            console.log("Password does match");
-        }
+        
 
 
         //create an authentication observable expecting the data of AuthResponseData
@@ -88,7 +80,15 @@ export class AuthComponent implements OnInit{
         if(this.isLoginMode){
             authObs = this.authService.login(submittedUser);
         }else{
-            authObs = this.authService.signup(submittedUser);
+            if(!this.matchPasswordValidator(submittedUser.password, submittedUser.confirmPassword)){
+                this.error = "Passwords do not match, please try again";
+                this.authForm.get('confirmPassword').setErrors({'invalid':true});
+                return;
+            }else{
+                console.log("Password does match");
+                authObs = this.authService.signup(submittedUser);
+
+            }
         }
         //subscribe to response to handle response after authentication
         authObs.subscribe(response =>{

@@ -47,9 +47,4 @@ export class DataStorageService{
         })
 
     }
-
-    getUsers(){
-        //call firebase storing all users
-    }
-
 }
