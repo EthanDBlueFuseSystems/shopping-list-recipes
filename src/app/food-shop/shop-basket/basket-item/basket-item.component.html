@@ -1,0 +1,19 @@
+
+<div class="row d-inline" [ngStyle]="{'border-top': index === 0 ? '1px solid' : '0px solid', 'border-bottom': isLastItem() ? '1px solid' : '0px solid', 'padding': '10px'}">
+    <div class="col-md-15" style="padding: 5px; border: 1px solid#B7B7B7;  background-color: #E1DFDF; border-radius:30px">
+        <h2>{{item.name}}</h2>         
+
+        <img 
+            [src]="item.imagePath" 
+            style="width: 20%; margin: 10px; border: 1px solid; border-radius: 25px;"/>
+
+        Amount: {{ item.amount  }}
+
+        Price: {{ item.price | currency }}
+       
+        
+        <button class="btn btn-primary float-right" style="margin-right: 10px" type="button">Edit</button>
+        <button class="btn btn-danger float-right" type="button">Remove</button>
+    </div>  
+</div>
+<br>

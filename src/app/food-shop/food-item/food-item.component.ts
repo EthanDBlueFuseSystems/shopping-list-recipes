@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, OnDestroy, Output } from "@angular/core";
 import { ShoppingItems } from "../shopping-items.model";
 import { FoodShopService } from "../food-shop.service";
-import { Subject } from "rxjs";
+import { FormGroup, FormControl } from "@angular/forms";
+import { Validators } from "@angular/forms";
 
 @Component({
     selector: "app-item-item",
@@ -15,10 +16,14 @@ export class FoodItemComponent implements OnInit, OnDestroy{
     @Input() index: number;
     @Input() itemAmount: number;
 
+    foodForm: FormGroup;
+
     constructor(private foodShopService: FoodShopService){}
 
-    ngOnInit(): void{
-        console.log(this.index);
+    ngOnInit(): void{   
+        this.foodForm = new FormGroup({
+            'amount': new FormControl('', Validators.required),
+        })
     }
 
     ngOnDestroy():void{
@@ -26,9 +31,12 @@ export class FoodItemComponent implements OnInit, OnDestroy{
     }
 
     addToBasket(){
-        const item = this.foodShopService.getItem(this.index);
-        this.foodShopService.addBasketItem(item);
+        let item = this.foodShopService.getItem(this.index);
+        const amount = this.foodForm.get('amount').value;
+        if(amount==='') {item['amount'] = 1}
+        else{item['amount'] = amount }
         
+        this.foodShopService.addBasketItem(item);
     }
 
 

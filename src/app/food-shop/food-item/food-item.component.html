@@ -1,35 +1,38 @@
 
-<div class="col-md-6">
-    <a style="cursor:pointer; margin-top: 5px;"
-        
-        class="list-group-item clearfix">
-        <div class="card" [align]="'center'">
-            <h3 class="card-title" >{{ item.name }}</h3> 
-            <br>
-            <img
+<div class="col-md-4">
+    <form [formGroup]="foodForm" (ngSubmit)="addToBasket()" >
+        <a style="cursor:pointer; margin-top: 5px; border-radius:10px; border: 1px solid#B7B7B7;  background-color: #E1DFDF"
+            
+            class="list-group-item clearfix">
+            <div class="card" [align]="'center'">
+                <h3 class="card-title" ><u>{{ item.name }}</u></h3> 
                 
-                [src]="item.imagePath"
-                alt="{{item.name}}"
-                class="img-responsive"
-                style="max-height: 150px; align-content: center">
-        
-            <div
-            style="margin-top: 10px;"  
-            class="card body">
-                Amount: <input style="width:50%;" type="number" name="amount"/> <br>
-                <div style="margin-top: 10px;">
-                    Price: {{ item.price | currency }} /pricePer: {{ item.pricePer}}p <br>
-                </div>
-                <div style="margin-top: 10px;">
-                    Type: {{ item.type }} <br>
+                <br>
+                <img
+                    
+                    [src]="item.imagePath"
+                    alt="{{item.name}}"
+                    class="img-responsive"
+                    style="max-height: 100px; align-content: center; border-radius: 25px;">
+            
+                <div
+                style="margin-top: 10px;"  
+                class="card body">
+                    Amount: <input style="width:50%;" type="number" formControlName="amount" name="amount"/> <br>
+                    <div style="margin-top: 10px;">
+                        Price: {{ item.price | currency }} /pricePer: {{ item.pricePer}}p <br>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        Type: {{ item.type }} <br>
 
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <button class="btn btn-success"
-            (click)="addToBasket()">Add</button>
-    </a>
+            <button style="border: 1px solid#B7B7B7;" class="btn btn-success"
+                type="submit">Add</button>
+        </a>
+    </form>
 
     <app-food-detail></app-food-detail>
 
