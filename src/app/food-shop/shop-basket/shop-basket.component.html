@@ -7,9 +7,13 @@
         [index]="idx"
     ></app-basket-item>
 
+    <div class="no-items-message" *ngIf="basket.length === 0" >
+        <h2>No items in basket</h2>
+    </div>  
+ 
     <div class="row d-inline">
         <button style="width: 65%; margin-right: 5px" type="button" class="btn btn-success">Checkout</button>
-        <button style="width: 30%;" type="button" class="btn btn-danger">Clear</button>
+        <button style="width: 30%;" type="button" class="btn btn-danger" (click)="clearBasket()">Clear</button>
     </div>
 
 </div>

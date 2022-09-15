@@ -9,7 +9,6 @@ import { Validators } from "@angular/forms";
     templateUrl: "./food-item.component.html"
 })
 
-
 export class FoodItemComponent implements OnInit, OnDestroy{
 
     @Input() item:ShoppingItems;
@@ -17,6 +16,7 @@ export class FoodItemComponent implements OnInit, OnDestroy{
     @Input() itemAmount: number;
 
     foodForm: FormGroup;
+    showDetails: boolean = false;
 
     constructor(private foodShopService: FoodShopService){}
 
@@ -31,14 +31,14 @@ export class FoodItemComponent implements OnInit, OnDestroy{
     }
 
     addToBasket(){
-        let item = this.foodShopService.getItem(this.index);
+        const item = this.foodShopService.getItem(this.index);
+        console.log('Items:', item);
         const amount = this.foodForm.get('amount').value;
-        if(amount==='') {item['amount'] = 1}
-        else{item['amount'] = amount }
-        
+        console.log('Amount:', amount);
+        !!amount ? item['amount'] = amount : item['amount'] = 1;
+        console.log("Items: " , item);
         this.foodShopService.addBasketItem(item);
     }
 
-
-
+    toggleDetails(){!this.showDetails;}
 }

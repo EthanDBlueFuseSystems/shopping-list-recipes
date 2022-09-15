@@ -25,9 +25,7 @@ export class FoodShopService implements OnInit{
         
     ];
 
-    private basket:ShoppingItems[] = [
-        new ShoppingItems(6, 'Ground Beef', 3, 'https://embed.widencdn.net/img/beef/4hh1pywcnj/exact/Grind_Fine_85.psd?keep=c&u=7fueml', 4.0, 1.0, 'meat'),
-    ]
+    private basket:ShoppingItems[] = []
 
     ngOnInit():void {
     }
@@ -52,6 +50,17 @@ export class FoodShopService implements OnInit{
 
     getBasketItems(){
         return this.basket.slice();
+    }
+
+    removeItemFromBasket(index: number){
+        this.basket.splice(index, 1);
+        this.basketChange.next(this.basket.slice());
+    }
+
+    editItemAmount(index:number, editedAmount){
+        this.basket[index] = editedAmount
+        this.basketChange.next(this.basket.slice());
+        console.log(this.basket);
     }
 
 

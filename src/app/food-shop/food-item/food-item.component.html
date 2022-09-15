@@ -1,7 +1,7 @@
 
 <div class="col-md-4">
     <form [formGroup]="foodForm" (ngSubmit)="addToBasket()" >
-        <a style="cursor:pointer; margin-top: 5px; border-radius:10px; border: 1px solid#B7B7B7;  background-color: #E1DFDF"
+        <a (click)="toggleDetails()" style="cursor:pointer; margin-top: 5px; border-radius:10px; border: 1px solid#B7B7B7;  background-color: #E1DFDF"
             
             class="list-group-item clearfix">
             <div class="card" [align]="'center'">
@@ -34,8 +34,7 @@
         </a>
     </form>
 
-    <app-food-detail></app-food-detail>
-
+    <app-food-detail *ngIf="showDetails"></app-food-detail>
 </div>
 
 

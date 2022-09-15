@@ -26,6 +26,13 @@ export class ShopBasketComponent implements OnInit, OnDestroy {
         this.basket = this.foodShopService.getBasketItems();
     }
 
+    public clearBasket(): void{
+        console.log("Clear basket");
+        this.basket.splice(0, this.basket.length);
+        this.foodShopService.basketChange.next(this.basket.slice());
+
+    }
+
     ngOnDestroy(): void{
         this.basketSubscription.unsubscribe()
     }
